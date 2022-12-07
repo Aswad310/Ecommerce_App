@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FrontendController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Frontend\CountryController;
+use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -43,6 +44,12 @@ Route::get('/cart', [CartController::class, 'viewCart']);
 Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem']);
 // Update cart quantity Route
 Route::post('/update-cart', [CartController::class, 'updateCartQty']);
+// User Order History
+Route::middleware(['auth'])->group(function(){
+    // show specific orders to match user
+   Route::get('my-orders', [UserController::class, 'index']);
+   Route::get('view-order/{id}', [UserController::class, 'view']);
+});
 
 /**
  * Checkout Routes
@@ -97,4 +104,17 @@ Route::middleware(['auth', 'isAdmin'])->group(function (){
     Route::put('/update-product/{id}', [ProductController::class, 'update']);
     // Delete Product
     Route::delete('/delete-product/{id}', [ProductController::class, 'destroy']);
+
+/*
+* User Routes
+*/
+    Route::get('/users', [FrontendController::class, 'users']);
+
+/*
+* Order Routes
+*/
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('admin/view-order/{id}', [OrderController::class, 'view']);
+    Route::put('update-order/{id}', [OrderController::class, 'updateOrder']);
+    Route::get('order-history', [OrderController::class, 'orderHistory']);
 });

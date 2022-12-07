@@ -35,10 +35,17 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="dropdown-item mt-1" href="/">
+                                <i class="fa fa-lock"></i>
                                 {{'My Profile'}}
                             </a>
+                            <a class="dropdown-item" href="{{url('my-orders')}}">
+                                <i class="fa fa-clock-rotate-left"></i>
+                                {{'Order History'}}
+                            </a>
+                            <hr>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-right-from-bracket"></i>
                                 {{ __('Logout') }}
                             </a>
 
@@ -48,7 +55,6 @@
                         </div>
                     </li>
                 @endguest
-
             </ul>
         </div>
     </div>

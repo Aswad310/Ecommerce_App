@@ -8,14 +8,15 @@
         </div>
         <div class="card-body">
             <div class="mb-3">
-                <a href="{{url('add-category')}}" class="btn btn-primary">Add Category</a>
+                <a href="{{url('add-category')}}" class="btn btn-primary"><i class="fa fa-pencil"></i> Add Category</a>
             </div>
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-hover text-center" style="background-color: #F5F5F5">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Status</th>
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
@@ -26,20 +27,28 @@
                         <tr>
                             <td>{{$category['id']}}</td>
                             <td>{{$category['name']}}</td>
-                            <td>{{ Str::limit($category['description'], 20)}}</td>
+                            <td>{!! Str::limit($category['description'], 30)!!}</td>
                             <td>
-                                @if($category['image'])
-                                <img src="{{ asset('assets/uploads/category/'.$category['image']) }}" alt="image here" width="100px">
+                                @if($category['status'] == '1')
+                                    <span style="color: green">Active</span>
                                 @else
-                                <p>No Image</p>
+                                    <span style="color: red">Hidden</span>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('edit-category/'.$category['id']) }}" class="btn btn-primary">Edit</a>
+                            @if($category['image'])
+                                    <img src="{{ asset('assets/uploads/category/'.$category['image']) }}" alt="image here" width="100px">
+                            @else
+                                <p>No Image</p>
+                            @endif
+                            </td>
+                            <td>
                                 <form method="POST" action="{{ url('delete-category/'.$category['id']) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">Delete</button>
+                                    <a href="{{ url('edit-category/'.$category['id']) }}"><i class="fa fa-pencil" style="color: #23527C"></i></a>
+                                    <span class="ml-2"></span>
+                                    <button class="btnNoBackground"><i class="fa fa-trash-can" style="color: #ED5565"></i></button>
                                 </form>
                             </td>
                         </tr>

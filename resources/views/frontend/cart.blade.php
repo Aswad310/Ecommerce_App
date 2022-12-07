@@ -2,9 +2,9 @@
 @section('title') My Cart @endsection
 @section('content')
     <!-- Breadcrumbs section starts-->
-    <div class="py-3 mb-4 shadow-sm bg-warning border-top">
+    <div class="py-3 breadcrumb mb-4 shadow-sm border-top">
         <div class="container">
-            <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <a href="{{url('cart')}}">Cart</a></h6>
+            <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <b><a href="{{url('cart')}}">Cart</a></b></h6>
         </div>
     </div>
     <!-- Breadcrumbs section ends-->
@@ -23,11 +23,11 @@
                                 <h6>{{$item->products->name}}</h6>
                             </div>
                             <div class="col-md-2 my-auto">
-                                <h6>Rs. {{$item->products->selling_price}}</h6>
+                                <h6>Rs.{{$item->products->selling_price}}</h6>
                             </div>
                             <div class="col-md-3 my-auto">
                                 <input type="hidden" class="prod_id" value="{{$item->prod_id}}">
-                                @if($item->products->qty > $item->prod_qty)
+                                @if($item->products->qty >=  $item->prod_qty)
                                     <label>Quantity</label>
                                     <div class="input-group text-center mb-3" style="width:130px;">
                                         <button class="input-group-text changeQuantity decrement-btn">-</button>
@@ -40,18 +40,19 @@
                                 @endif
                             </div>
                             <div class="col-md-2 my-auto">
-                                <button class="btn btn-danger delete-cart-item">Remove <i class="fa fa-trash-can"></i></button>
+                                <button class="btn btn-danger btn-sm delete-cart-item"><i class="fa fa-trash-can"></i> Delete</button>
                             </div>
                         </div>
                     @endforeach
                 @else
                     <p class="text-center" style="color: #696969"><i>Cart is Empty</i></p>
+                    <a href="{{url('category')}}" class="btn btn-outline-primary float-end">Continue Shopping</a>
                 @endif
             </div>
             @if(count($cartItems) > 0)
-                <div class="card-footer">
-                    <h4 class="text-center ">Total Bill : <b>Rs.{{$total ?? 0}}/-</b></h4>
-                    <a href="{{url('checkout')}}" class="btn btn-outline-success float-end">Proceed to Checkout</a>
+                <div class="card-footer text-center ">
+                    <h5 class="my-3"><span class="text-dim">Total Payable Bill: </span><b>Rs.{{$total ?? 0}}/-</b></h5>
+                    <a href="{{url('checkout')}}" class="btn btn-outline-success btn-sm">Proceed to Checkout</a>
                 </div>
             @endif
         </div>

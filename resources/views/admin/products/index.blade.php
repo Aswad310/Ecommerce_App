@@ -7,7 +7,7 @@
             <p class="card-category">All products present in our shop</p>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-hover text-center" style="background-color: #F5F5F5">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                 <div class="mb-3">
-                    <a href="{{url('add-product')}}" class="btn btn-primary">Add Product</a>
+                    <a href="{{url('add-product')}}" class="btn btn-primary"><i class="fa fa-pencil"></i> Add Product</a>
                 </div>
                 @if(count($products) > 0)
                     @foreach($products as $product)
@@ -31,17 +31,18 @@
                             <td>Rs.{{$product['selling_price']}}</td>
                             <td>
                                 @if($product['image'])
-                                <img src="{{ asset('assets/uploads/product/'.$product['image']) }}" alt="image here" width="100px">
+                                    <img src="{{ asset('assets/uploads/product/'.$product['image']) }}" alt="image here" width="100px">
                                 @else
-                                <p>No Image</p>
+                                    <p>No Image</p>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ url('edit-product/'.$product['id']) }}" class="btn btn-primary">Edit</a>
                                 <form method="POST" action="{{ url('delete-product/'.$product['id']) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger">Delete</button>
+                                    <a href="{{ url('edit-product/'.$product['id']) }}"><i class="fa fa-pencil" style="color: #23527C"></i></a>
+                                    <span class="ml-2"></span>
+                                    <button class="btnNoBackground"><i class="fa fa-trash-can" style="color: #ED5565"></i></button>
                                 </form>
                             </td>
                         </tr>

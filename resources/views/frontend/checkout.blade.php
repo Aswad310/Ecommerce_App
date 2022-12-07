@@ -4,13 +4,13 @@
 @section('title') Checkout @endsection
 @section('content')
     <!-- Breadcrumbs section starts-->
-    <div class="py-3 shadow-sm bg-warning border-top">
+    <div class="py-3 shadow-sm breadcrumb border-top">
         <div class="container">
             <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <a href="{{url('cart')}}">Cart</a> / <a href="{{url('checkout')}}">Checkout</a></h6>
         </div>
     </div>
     <!-- Breadcrumbs section ends-->
-    <div class="container my-5">
+    <div class="container my-4">
         <form action="{{url('place-order')}}" method="POST">
             @csrf
             <div class="row">
@@ -26,7 +26,7 @@
                                            class="form-control"
                                            name="fname"
                                            placeholder="e.g. Aswad"
-                                           value="{{old('fname')}}">
+                                           value="{{Auth::user()->name}}">
                                     @error('fname')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -37,7 +37,7 @@
                                            class="form-control"
                                            name="lname"
                                            placeholder="e.g. Ali"
-                                           value="{{old('lname')}}">
+                                           value="{{Auth::user()->lname}}">
                                     @error('lname')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -48,7 +48,7 @@
                                            class="form-control"
                                            name="email"
                                            placeholder="e.g. aswad@gmail.com"
-                                           value="{{old('email')}}">
+                                           value="{{Auth::user()->email}}">
                                     @error('email')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -59,7 +59,7 @@
                                            class="form-control"
                                            name="phone"
                                            placeholder="e.g. 03025390923"
-                                           value="{{old('phone')}}">
+                                           value="{{Auth::user()->phone}}">
                                     @error('phone')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -70,7 +70,7 @@
                                            class="form-control"
                                            name="address1"
                                            placeholder="e.g. Street # 8 House # 30"
-                                           value="{{old('address1')}}">
+                                           value="{{Auth::user()->address1}}">
                                     @error('address1')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -81,7 +81,7 @@
                                            class="form-control"
                                            name="address2"
                                            placeholder="e.g. Near Gulberg 3"
-                                           value="{{old('address2')}}">
+                                           value="{{Auth::user()->address2}}">
                                     @error('address2')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -92,7 +92,7 @@
                                            class="form-control"
                                            name="city"
                                            placeholder="e.g. Lahore"
-                                           value="{{old('city')}}">
+                                           value="{{Auth::user()->city}}">
                                     @error('city')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -103,7 +103,7 @@
                                            class="form-control"
                                            name="state"
                                            placeholder="e.g. Punjab"
-                                           value="{{old('state')}}">
+                                           value="{{Auth::user()->state}}">
                                     @error('state')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -126,7 +126,7 @@
                                            class="form-control"
                                            name="pincode"
                                            placeholder="e.g. 54000"
-                                           value="{{old('pincode')}}">
+                                           value="{{Auth::user()->pincode}}">
                                     @error('pincode')
                                         <small class="error-val">{{ $message }}</small>
                                     @enderror
@@ -141,36 +141,41 @@
                 <div class="col-md-6">
                     <div class="card p-2">
                         <div class="card-body">
-                            <h5 class="mb-4 text-dim">Order Details</h5>
-                            <table class="table table-bordered text-center table-hover">
-                                <thead>
-                                    <tr class="text-dim">
-                                        <th>Product Name</th>
-                                        <th>Quantity</th>
-                                        <th>Product Price</th>
-                                        <th>Total Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $total = 0 @endphp
-                                    @foreach($cartItems as $cartItem)
+                            <h5 class="mb-4">Order Details</h5>
+                            @if(count($cartItems) > 0)
+                                <table class="table table-bordered text-center table-hover">
+                                    <thead>
                                         <tr>
-                                            <td>{{$cartItem->products->name}}</td>
-                                            <td>{{$cartItem->prod_qty}}</td>
-                                            <td>Rs.{{$cartItem->products->selling_price}}</td>
-                                            <td style="color: green"><b>Rs.{{$cartItem->prod_qty * $cartItem->products->selling_price}}/-</b></td>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Product Price</th>
+                                            <th>Total Price</th>
                                         </tr>
-                                    @php $total+= $cartItem->prod_qty * $cartItem->products->selling_price @endphp
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th class="text-dim" style="text-align:right;" colspan="3">Total Bill :- </th>
-                                        <td><b>Rs.{{$total ?? 0}}/-</b></td>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @php $total = 0 @endphp
+                                        @foreach($cartItems as $cartItem)
+                                            <tr>
+                                                <td>{{$cartItem->products->name}}</td>
+                                                <td>{{$cartItem->prod_qty}}</td>
+                                                <td>Rs.{{$cartItem->products->selling_price}}</td>
+                                                <td style="color: green"><b>Rs.{{$cartItem->prod_qty * $cartItem->products->selling_price}}</b></td>
+                                            </tr>
+                                        @php $total+= $cartItem->prod_qty * $cartItem->products->selling_price @endphp
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-dim" style="text-align:right;" colspan="3">Total Payable Bill</th>
+                                            <td><b>Rs.{{$total ?? 0}}/-</b></td>
+                                            <input type="hidden" name="total_price" value="{{$total}}">
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             <button class="btn btn-primary btn-sm w-100">Place Order</button>
+                            @else
+                                <p class="text-center text-dim"><i>No products in the cart</i></p>
+                            @endif
                         </div>
                     </div>
                 </div>

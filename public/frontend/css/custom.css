@@ -10,8 +10,35 @@
     color: #F47174;
 }
 
+.orange-light{
+    color: #fcefe8;
+}
+
 .text-dim{
     color: #696969;
+}
+
+.dropdown-menu{
+    font-size: 14px;
+    border-radius: 0px;
+}
+
+.breadcrumb{
+    background-color: #fcefe8;
+}
+
+.breadcrumb a{
+    text-decoration: none;
+    color: #696969;
+}
+
+.btnNoBackground {
+    background-color: Transparent;
+    border: none;
+}
+
+.card-footer{
+    background-color: #fcefe8;
 }
 
 .form-select{
@@ -121,4 +148,14 @@
         display: block;
         text-align: left;
     }
+}
+
+.order-details label{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.order-details div{
+    font-size: 14px;
+    padding: 5px !important;
 }

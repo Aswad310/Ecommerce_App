@@ -3,12 +3,12 @@
 @extends('layouts.front')
 @section('title', 'Ecommerce | '.$category['name'])
 @section('content')
-    <div class="py-3 shadow-sm bg-warning border-top">
+    <div class="py-3 breadcrumb shadow-sm border-top">
         <div class="container">
-            <h6><a href="{{url('/')}}">Home</a> / <a href="{{url('category')}}">Categories</a> / <a href="">{{$category['name']}}</a></h6>
+            <h6><a href="{{url('/')}}">Home</a> / <a href="{{url('category')}}">Categories</a> / <b><a href="">{{$category['name']}}</a></b></h6>
         </div>
     </div>
-    <div class="py-5">
+    <div class="py-4">
         <div class="container">
             <div class="row">
                 <h2 class="mb-4">{{$category['name']}}</h2>

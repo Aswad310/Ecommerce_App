@@ -41,8 +41,6 @@
     <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Owl Carousel -->
     <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
-    <!-- Sweet Alerts -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Sweet Alerts 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Toastify -->
@@ -79,10 +77,16 @@
         })
     </script>
 
-    <!-- Sweetalert script starts -->
+    <!-- Sweetalert2 script starts -->
     @if(session('status'))
         <script>
-            swal("", "{{ session('status') }}", "success");
+            Swal.fire({
+                icon: 'success',
+                text: "{{session('status')}}",
+            }).then(function(){
+                    location.reload();
+                }
+            );
         </script>
     @endif
     <!-- Sweetalert script ends -->

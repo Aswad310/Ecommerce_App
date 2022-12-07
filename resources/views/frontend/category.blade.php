@@ -3,14 +3,14 @@
 @section('title') Ecommerce - Categories @endsection
 @section('content')
     <!-- Breadcrumbs section starts-->
-    <div class="py-3 shadow-sm bg-warning border-top">
+    <div class="py-3 breadcrumb shadow-sm border-top">
         <div class="container">
-            <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <a href="{{url('category')}}">Categories</a></h6>
+            <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <b><a href="{{url('category')}}">Categories</a></b></h6>
         </div>
     </div>
     <!-- Breadcrumbs section ends-->
 
-    <div class="py-5">
+    <div class="py-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

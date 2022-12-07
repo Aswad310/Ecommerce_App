@@ -2,9 +2,9 @@
 @section('title', 'Product | '.$product['name'])
 @section('content')
     <!-- Breadcrumbs section starts-->
-    <div class="py-3 shadow-sm bg-warning border-top">
+    <div class="py-3 breadcrumb shadow-sm border-top">
         <div class="container">
-            <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <a href="{{url('category')}}">Categories</a> / <a href="{{url('view-category/'.$product->category->slug)}}">{{$product->category->name}}</a> / <a href="">{{$product->name}}</a> </h6>
+            <h6 class="mb-0"><a href="{{url('/')}}">Home</a> / <a href="{{url('category')}}">Categories</a> / <a href="{{url('view-category/'.$product->category->slug)}}">{{$product->category->name}}</a> / <b><a href="">{{$product->name}}</a></b> </h6>
         </div>
     </div>
     <!-- Breadcrumbs section ends-->
@@ -54,9 +54,9 @@
                     </div>
                 </div>
                 <hr />
-                <div class="row">
+                <div class="row p-5">
                     <h2>Description</h2>
-                    <p class="mt-3">{{$product['description']}}</p>
+                    <p class="mt-3">{!! $product['description'] !!}</p>
                 </div>
             </div>
         </div>

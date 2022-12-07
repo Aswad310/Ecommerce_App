@@ -87,7 +87,8 @@ class CartController extends Controller
 
     // delete cart route
     public function deleteCartItem(Request $request){
-        if (Auth::check()){
+        if (Auth::check())
+        {
             $prod_id = $request->input('prod_id');
             if(Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
             {
@@ -98,7 +99,6 @@ class CartController extends Controller
                     'status' => 'Product Deleted Successfully'
                 ]);
             }
-
         }
         else
         {

@@ -1,6 +1,6 @@
 {{--{{dd($popularCategories)}}--}}
 @extends('layouts.front')
-@section('title') Welcome to Ecommerce @endsection
+@section('title') Ecommerce @endsection
 <!--Mini Navbar section starts-->
     <div class="topnav navlink" id="myTopnav">
         <a class="active" style="text-decoration: none; color: #F16F3B"><b>Trending</b></a>
@@ -32,9 +32,28 @@
                 </div>
             </div>
         </div>
+        <!--Dynamic-->
+        <div class="container">
+            <div class="row">
+                <h3 class="mb-4">Product Category name (under process)</h3>
+                <div class="owl-carousel owl-theme">
+                    @foreach($popularCategories as $popular)
+                        <div class="item">
+                            <div class="card">
+                                <a href="{{url('view-category/'.$popular['slug'])}}"><img class="card-img-top" src="{{asset('assets/uploads/category/'.$popular['image'])}}" alt="product image"></a>
+                                <div class="card-body">
+                                    <h6 class="card-title">{{$popular['name']}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
+<!-- Owl Carousel -->
 @section('scripts')
     <script>
         $('.owl-carousel').owlCarousel({
