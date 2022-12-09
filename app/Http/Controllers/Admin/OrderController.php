@@ -11,7 +11,7 @@ class OrderController extends Controller
     // show all customer orders
     public function index()
     {
-        $orders = Order::where('status', '0')->get();
+        $orders = Order::where('status', '0')->latest()->get();
         return view('admin.orders.index')->with(['orders' => $orders]);
     }
 
@@ -36,7 +36,7 @@ class OrderController extends Controller
     // completed order history
     public function orderHistory()
     {
-        $orders = Order::where('status', '1')->get();
+        $orders = Order::where('status', '1')->latest()->get();
         return view('admin.orders.history')->with(['orders' => $orders]);
     }
 }

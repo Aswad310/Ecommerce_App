@@ -7,14 +7,14 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h3 class="text-center">New Orders
-                            <a href="{{url('order-history')}}" class="btn btn-secondary btn-sm float-right">Orders History</a>
+                            <a href="{{url('order-history')}}" class="btn btn-secondary btn-sm float-right"> <i class="fa fa-rectangle-history"></i> Orders History</a>
                         </h3>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered text-center table-hover">
                             <thead>
                             <tr>
-                                <th>Tracking Number</th>
+                                <th>Tracking ID</th>
                                 <th>Total Price</th>
                                 <th>Order Status</th>
                                 <th>Order Time</th>
@@ -25,7 +25,7 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{$order['tracking_no']}}</td>
-                                    <td style="color: green">Rs.{{$order['total_price']}}</td>
+                                    <td style="color: green">{{numberFormat($order['total_price'])}}</td>
                                     <td>
                                         @if($order['status'] == '0')
                                             <span style="color: coral;"><b>Pending</b></span>
@@ -35,7 +35,7 @@
                                     </td>
                                     <td>{{$order['created_at']->format('F jS , Y - h:i:s A')}}</td>
                                     <td>
-                                        <a href="{{url('admin/view-order/'.$order['id'])}}" class="btn btn-primary btn-sm">view</a>
+                                        <a href="{{url('admin/view-order/'.$order['id'])}}" data-toggle="tooltip" data-placement="top" title="View Order"><i class="fa fa-eye" style="color:#23527C"></i></a>
                                     </td>
                                 </tr>
                             @endforeach

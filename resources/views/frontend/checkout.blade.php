@@ -158,7 +158,7 @@
                                             <tr>
                                                 <td>{{$cartItem->products->name}}</td>
                                                 <td>{{$cartItem->prod_qty}}</td>
-                                                <td>Rs.{{$cartItem->products->selling_price}}</td>
+                                                <td>{{numberFormat($cartItem->products->selling_price)}}</td>
                                                 <td style="color: green"><b>Rs.{{$cartItem->prod_qty * $cartItem->products->selling_price}}</b></td>
                                             </tr>
                                         @php $total+= $cartItem->prod_qty * $cartItem->products->selling_price @endphp
@@ -167,7 +167,7 @@
                                     <tfoot>
                                         <tr>
                                             <th class="text-dim" style="text-align:right;" colspan="3">Total Payable Bill</th>
-                                            <td><b>Rs.{{$total ?? 0}}/-</b></td>
+                                            <td><b>{{numberFormat($total ?? 0)}}</b></td>
                                             <input type="hidden" name="total_price" value="{{$total}}">
                                         </tr>
                                     </tfoot>

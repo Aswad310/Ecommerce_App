@@ -57,7 +57,7 @@
         <script>
             Toastify({
                 text: "{{ session('success') }}",
-                duration: 3000,
+                duration: 5000,
                 destination: "https://github.com/apvarun/toastify-js",
                 newWindow: true,
                 close: true,

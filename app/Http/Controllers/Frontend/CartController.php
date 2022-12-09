@@ -52,7 +52,7 @@ class CartController extends Controller
         {
             return response()->json([
                 'icon' => 'error',
-                'status' => 'Login to Continue.'
+                'status' => 'Login to Continue'
             ]);
         }
     }

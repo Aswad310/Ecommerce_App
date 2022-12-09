@@ -20,7 +20,7 @@
                         <table class="table table-bordered text-center table-hover">
                             <thead>
                             <tr>
-                                <th>Tracking Number</th>
+                                <th>Tracking ID</th>
                                 <th>Total Price</th>
                                 <th>Order Status</th>
                                 <th>Order Time</th>

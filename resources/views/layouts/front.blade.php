@@ -91,6 +91,27 @@
     @endif
     <!-- Sweetalert script ends -->
 
+
+    <!--Toastify-->
+{{--    <script>--}}
+{{--        Toastify({--}}
+{{--            text: "Muzana bought a Samsung Glaxy A53 from Islamabad",--}}
+{{--            duration: 3000,--}}
+{{--            destination: "http://localhost:8000/category/smartphones/samsung-galaxy-a53",--}}
+{{--            newWindow: true,--}}
+{{--            close: true,--}}
+{{--            gravity: "bottom", // `top` or `bottom`--}}
+{{--            position: "left", // `left`, `center` or `right`--}}
+{{--            stopOnFocus: true, // Prevents dismissing of toast on hover--}}
+{{--            style: {--}}
+{{--                background: "#000",--}}
+{{--                color: "#ffffff"--}}
+{{--            },--}}
+{{--            onClick: function(){} // Callback after click--}}
+{{--        }).showToast();--}}
+{{--    </script>--}}
+    <!--Toastify-->
+
     @yield('scripts')
 </body>
 </html>

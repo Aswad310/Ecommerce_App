@@ -51,7 +51,7 @@
                                         <tr>
                                             <td>{{$item->products->name}}</td>
                                             <td>{{$item->qty}}</td>
-                                            <td>Rs.{{$item->price}}</td>
+                                            <td>{{numberFormat($item->price)}}</td>
                                             <td>
                                                 <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" width="50px" alt="image here">
                                             </td>
@@ -59,7 +59,7 @@
                                     @endforeach
                                     </tbody>
                                     <tr>
-                                        <td colspan="4"><h5 class="text-center">Total Payable Bill: <span style="color: green">Rs.{{$orders->total_price}}</span></h5></td>
+                                        <td colspan="4"><h5 class="text-center">Total Payable Bill: <span style="color: green">{{numberFormat($orders->total_price)}}</span></h5></td>
                                     </tr>
                                 </table>
                                 <div class="mt-3">

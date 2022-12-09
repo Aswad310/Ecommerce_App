@@ -23,7 +23,7 @@
                                 <h6>{{$item->products->name}}</h6>
                             </div>
                             <div class="col-md-2 my-auto">
-                                <h6>Rs.{{$item->products->selling_price}}</h6>
+                                <h6>{{numberFormat($item->products->selling_price)}}</h6>
                             </div>
                             <div class="col-md-3 my-auto">
                                 <input type="hidden" class="prod_id" value="{{$item->prod_id}}">
@@ -51,7 +51,7 @@
             </div>
             @if(count($cartItems) > 0)
                 <div class="card-footer text-center ">
-                    <h5 class="my-3"><span class="text-dim">Total Payable Bill: </span><b>Rs.{{$total ?? 0}}/-</b></h5>
+                    <h5 class="my-3"><span class="text-dim">Total Payable Bill: </span><b>{{numberFormat($total ?? 0)}}</b></h5>
                     <a href="{{url('checkout')}}" class="btn btn-outline-success btn-sm">Proceed to Checkout</a>
                 </div>
             @endif
