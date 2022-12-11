@@ -31,6 +31,11 @@
     text-decoration: none;
     color: #696969;
 }
+.onHoverUnderline:hover{
+    text-decoration: underline;
+    color: #F3571F;
+}
+
 
 .btnNoBackground {
     background-color: Transparent;

@@ -12,18 +12,22 @@ class FrontendController extends Controller
     // user Landing page
     public function index()
     {
-        $popularCategories = Category::orderBy('created_at', 'desc')->where('popular', 1)->take(15)->get();
-        $trendingProducts = Product::orderBy('created_at', 'desc')->where('trending', 1)->take(10)->get();
+        $popularCategories = Category::latest()->where('popular', 1)->take(15)->get();
+        $trendingProducts = Product::latest()->where('trending', 1)->take(10)->get();
+        $categories = Category::latest()->where('status', 1)->get();
+        $products = Product::latest()->where('qty', '>=', '1')->get();
         return view('frontend.index')->with([
             'popularCategories' => $popularCategories,
             'trendingProducts' => $trendingProducts,
+            'categories' => $categories,
+            'products' => $products,
             ]);
     }
 
     // user category page
     public function category()
     {
-        $allCategories = Category::orderBy('created_at', 'desc')->where('status', 1)->get();
+        $allCategories = Category::latest()->where('status', 1)->get();
         return view('frontend.category')->with(['allCategories' => $allCategories]);
     }
 
