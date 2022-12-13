@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -23,22 +24,27 @@ use App\Http\Controllers\HomeController;
 Auth::routes();
 
 /**
- * CART Routes
+ * CART and WISHLIST Routes
  */
     Route::post('/add-to-cart', [CartController::class, 'addProduct']);
     Route::get('/cart', [CartController::class, 'viewCart']);
     Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem']);
     Route::post('/update-cart', [CartController::class, 'updateCartQty']);
+    Route::get('/load-cart-count', [CartController::class, 'cartCount']);
+    Route::get('/load-wishlist-count', [WishlistController::class, 'wishlistCount']);
+    Route::post('/add-to-wishlist', [WishlistController::class, 'add']);
+    Route::post('/delete-wishlist-item', [WishlistController::class, 'deleteItem']);
     Route::middleware(['auth'])->group(function(){
-       Route::get('my-orders', [UserController::class, 'index']);
-       Route::get('view-order/{id}', [UserController::class, 'view']);
+        Route::get('/my-orders', [UserController::class, 'index']);
+        Route::get('/view-order/{id}', [UserController::class, 'view']);
+        Route::get('/wishlist', [WishlistController::class, 'index']);
     });
 
 /**
  * Checkout Routes
  */
-    Route::get('/checkout', [CheckoutController::class, 'index']);
-    Route::post('/place-order', [CheckoutController::class, 'placeOrder']);
+Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::post('/place-order', [CheckoutController::class, 'placeOrder']);
 /**
  * Extra Routes
  */

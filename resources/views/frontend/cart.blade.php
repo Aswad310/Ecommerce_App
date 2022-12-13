@@ -40,7 +40,7 @@
                                 @endif
                             </div>
                             <div class="col-md-2 my-auto">
-                                <button class="btn btn-danger btn-sm delete-cart-item"><i class="fa fa-trash-can"></i> Delete</button>
+                                <button class="btn btn-danger btn-sm delete-cart-item"><i class="fa fa-trash-can"></i> Remove</button>
                             </div>
                         </div>
                     @endforeach

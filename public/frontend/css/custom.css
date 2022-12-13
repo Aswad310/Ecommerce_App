@@ -6,6 +6,10 @@
     color: red;
 }
 
+.hidden {
+    display: none;
+}
+
 .required{
     color: #F47174;
 }
@@ -66,15 +70,15 @@
 }
 
 .card{
-    border-radius: 0px;
+    border-radius: 20px;
 }
 
 .form-control{
-    border-radius: 0px;
+    border-radius: 10px;
 }
 
 .form-select{
-    border-radius: 0px;
+    border-radius: 10px;
 }
 
 .form-control:focus {
@@ -163,4 +167,10 @@
 .order-details div{
     font-size: 14px;
     padding: 5px !important;
+}
+
+.whatsapp-chat{
+    bottom: 100px;
+    right: 10px;
+    position: fixed;
 }

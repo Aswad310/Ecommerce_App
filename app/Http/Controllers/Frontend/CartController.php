@@ -30,7 +30,7 @@ class CartController extends Controller
                 {
                     return response()->json([
                         'icon' => 'warning',
-                        'status' => $prod_check->name .' already added.'
+                        'status' => $prod_check->name .' already Carted'
                     ]);
                 }
                 // add product to cart if not added before
@@ -43,7 +43,7 @@ class CartController extends Controller
                     $cartItem->save();
                     return response()->json([
                         'icon' => 'success',
-                        'status' => $prod_check->name .' added to cart.'
+                        'status' => $prod_check->name .' Carted'
                     ]);
                 }
             }
@@ -107,5 +107,14 @@ class CartController extends Controller
                 'status' => 'Login to Continue.'
             ]);
         }
+    }
+
+    // count cart
+    public function cartCount()
+    {
+        $cartCount = Cart::where('user_id', Auth::id())->count();
+        return response()->json([
+            'count' => $cartCount,
+        ]);
     }
 }
