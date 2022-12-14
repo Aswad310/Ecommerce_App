@@ -11,7 +11,7 @@
     <!-- Breadcrumbs section ends-->
 
     <div class="container">
-        <div class="card shadow">
+        <div class="card shadow wishlistItems">
             <div class="card-body">
                 @if(count($wishlist) > 0)
                     <div class="card-body mt-4">
@@ -36,7 +36,11 @@
                                         @endif
                                     </div>
                                     <div class="col-md-2 my-auto">
-                                        <button class="btn btn-success btn-sm addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                        @if($item->products->qty > 0)
+                                            <button class="btn btn-success btn-sm addToCartBtn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                        @else
+                                            <p class="text-dim"><i>Come Back Soon</i></p>
+                                        @endif
                                     </div>
                                     <div class="col-md-2 my-auto">
                                         <button class="btn btn-danger btn-sm remove-wishlist-item"><i class="fa fa-trash-can"></i> Remove</button>

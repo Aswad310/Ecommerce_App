@@ -40,10 +40,18 @@
     color: #F3571F;
 }
 
-
 .btnNoBackground {
     background-color: Transparent;
     border: none;
+}
+
+.search-bar{
+    width: 30%;
+    margin-left: 18%;
+}
+
+.ui-menu{
+    z-index: 3500 !important;
 }
 
 .card-footer{

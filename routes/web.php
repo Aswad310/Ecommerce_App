@@ -21,6 +21,9 @@ use App\Http\Controllers\HomeController;
     Route::get('/view-category/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewProductsByCategory']);
     Route::get('/category/{cate_slug}/{prod_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productView']);
 
+    Route::get('/product-list', [FrontendController::class, 'productListAjax']);
+    Route::post('/searchproduct', [FrontendController::class, 'searchProduct']);
+
 Auth::routes();
 
 /**

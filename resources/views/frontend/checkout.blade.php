@@ -227,10 +227,6 @@
     </script>
 
     <script>
-
-    </script>
-
-    <script>
         paypal.Buttons({
             // Sets up the transaction when a payment button is clicked
             createOrder: (data, actions) => {
@@ -287,7 +283,9 @@
                             Swal.fire({
                                 icon: 'success',
                                 text: response.status,
-                            });
+                            }.then((value) => {
+                                swal()
+                            }));
                             window.location = "/my-orders";
                         }
                     });

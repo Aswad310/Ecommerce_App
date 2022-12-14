@@ -10,7 +10,7 @@
     <!-- Breadcrumbs section ends-->
 
     <div class="container">
-        <div class="card shadow">
+        <div class="card shadow cartItems">
             <div class="card-body mt-4">
                 @if(count($cartItems) > 0)
                     @php $total = 0 @endphp

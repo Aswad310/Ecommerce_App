@@ -107,7 +107,8 @@ $(document).ready(function (){
     });
 
     // increment button
-    $('.increment-btn').click(function (e){
+    // $('.increment-btn').click(function (e){
+    $(document).on('click', '.increment-btn', function (e){
         e.preventDefault();
         var inc_value = $(this).closest('.product_data').find('.qty-input').val();
         var value = parseInt(inc_value, 10);
@@ -119,7 +120,8 @@ $(document).ready(function (){
     });
 
     // decrement button
-    $('.decrement-btn').click(function (e){
+    // $('.decrement-btn').click(function (e){
+    $(document).on('click', '.decrement-btn', function (e){
         e.preventDefault();
         var dec_value = $(this).closest('.product_data').find('.qty-input').val();
         var value = parseInt(dec_value, 10);
@@ -131,10 +133,10 @@ $(document).ready(function (){
     });
 
     // remove cart item button
-    $('.delete-cart-item').click(function (e){
+    // $('.delete-cart-item').click(function (e){
+    $(document).on('click', '.delete-cart-item', function (e){
         e.preventDefault();
         var prod_id = $(this).closest('.product_data').find('.prod_id').val();
-
         $.ajax({
             method: 'POST',
             url: '/delete-cart-item',
@@ -142,7 +144,9 @@ $(document).ready(function (){
                 'prod_id': prod_id,
             },
             success: function (response) {
-                window.location.reload();
+                //window.location.reload();
+                loadCart();
+                $('.cartItems').load(location.href + " .cartItems")
                 Toast.fire({
                     icon: response.icon,
                     title: response.status,
@@ -152,7 +156,8 @@ $(document).ready(function (){
     });
 
     // remove wishlist button
-    $('.remove-wishlist-item').click(function (e){
+    // $('.remove-wishlist-item').click(function (e){
+    $(document).on('click', '.remove-wishlist-item', function (e){
        e.preventDefault();
         var prod_id = $(this).closest('.product_data').find('.prod_id').val();
 
@@ -163,7 +168,9 @@ $(document).ready(function (){
                 'prod_id': prod_id,
             },
             success: function (response) {
-                window.location.reload();
+                // window.location.reload();
+                loadWishlist();
+                $('.wishlistItems').load(location.href + " .wishlistItems")
                 Toast.fire({
                     icon: response.icon,
                     title: response.status,
@@ -174,7 +181,8 @@ $(document).ready(function (){
     });
 
     // change quantity on decrement btn
-    $('.changeQuantity').click(function (e){
+    // $('.changeQuantity').click(function (e){
+    $(document).on('click', '.changeQuantity', function (e){
         e.preventDefault();
         var prod_id = $(this).closest('.product_data').find('.prod_id').val();
         var qty = $(this).closest('.product_data').find('.qty-input').val();
@@ -188,7 +196,8 @@ $(document).ready(function (){
             url: '/update-cart',
             data: data,
             success: function (response) {
-                window.location.reload();
+                // window.location.reload();
+                $('.cartItems').load(location.href + " .cartItems")
                 Toast.fire({
                     icon: response.icon,
                     title: response.status,

@@ -14,6 +14,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+    <!-- jQuery UI css -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
@@ -42,6 +44,26 @@
 
     <!-- jQuery -->
     <script src="{{ asset('frontend/js/jquery-3.6.1.min.js') }}"></script>
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script>
+            var availableTags = [];
+
+            $.ajax({
+                method: "GET",
+                url: "/product-list",
+                success: function (response){
+                    startAutoComplete(response)
+                }
+            })
+
+            function startAutoComplete(availableTags){
+                $( "#search_product").autocomplete({
+                    source: availableTags
+                });
+            }
+    </script>
     <!-- Custom JS -->
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
     <!-- Scripts -->
@@ -87,7 +109,7 @@
     <script>
         window.Toast = Swal.mixin({
             toast: true,
-            position: 'bottom-end',
+            position: 'top-end',
             showConfirmButton: false,
             timer: 1500,
             timerProgressBar: true,
