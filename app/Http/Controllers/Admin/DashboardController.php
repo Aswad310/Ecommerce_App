@@ -3,20 +3,31 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function users()
+    public function count()
     {
-        $users = User::orderBy('created_at', 'desc')->get();
-        return view('admin.users.index')->with(['users' => $users]);
-    }
-
-    public function view($id)
-    {
-        $user = User::find($id);
-        return view('admin.users.view')->with(['user' => $user]);
+        $category = Category::count();
+        $product = Product::count();
+        $totalOrder = Order::count();
+        $user = User::count();
+        $pendingOrder = Order::where('status', '0')->count();
+        $completeOrder = Order::where('status', '1')->count();
+        $totalEarning = Order::sum('total_price');
+        return view('admin.index')->with([
+            "category" => $category,
+            "product" => $product,
+            "totalOrder" => $totalOrder,
+            "user" => $user,
+            "pendingOrder" => $pendingOrder,
+            "completeOrder" => $completeOrder,
+            "totalEarning" => $totalEarning,
+        ]);
     }
 }

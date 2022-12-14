@@ -48,6 +48,7 @@ class CartController extends Controller
                 }
             }
         }
+        // else error message response
         else
         {
             return response()->json([
@@ -57,7 +58,7 @@ class CartController extends Controller
         }
     }
 
-    // view cart
+    // view added items in the cart
     public function viewCart()
     {
         $cartItems = Cart::where('user_id', Auth::id())->get();
@@ -67,9 +68,10 @@ class CartController extends Controller
     // update cart quantity
     public function updateCartQty(Request $request)
     {
+        // take value from upcoming request
         $prod_id = $request->input('prod_id');
         $prod_qty = $request->input('prod_qty');
-
+        // check user authentication
         if (Auth::check())
         {
             if (Cart::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())

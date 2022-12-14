@@ -69,4 +69,48 @@ class FrontendController extends Controller
             return redirect('/')->with('success', 'Category does not exits');
         }
     }
+
+    // search function
+    public function productListAjax()
+    {
+        // get product names according to active status
+        $products = Product::select('name')->where('status', '1')->get();
+        // intialize empty data array
+        $data = [];
+        // get item one by one and store them in data[]
+        foreach ($products as $item)
+        {
+            $data[] = $item['name'];
+        }
+        // return data
+        return $data;
+    }
+
+    // search product
+    public function searchProduct(Request $request)
+    {
+        // take the product name from upcoming request
+        $searched_product = $request->product_name;
+        // if searched_product is not empty
+        if ($searched_product != "")
+        {
+            // query to find name in database using wildcards
+            $product = Product::where("name", "LIKE", "%$searched_product%")->first();
+            // if find that name return the page
+            if ($product)
+            {
+                return redirect('category/'.$product->category->slug.'/'.$product->slug);
+            }
+            // no page found
+            else
+            {
+                return redirect()->back()->with("status", "No products matched your search");
+            }
+        }
+        // else redirect to back page
+        else
+        {
+            return redirect()->back();
+        }
+    }
 }

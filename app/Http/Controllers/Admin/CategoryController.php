@@ -38,7 +38,7 @@ class CategoryController extends Controller
         return redirect('/categories')->with('success', 'Category Added Successfully');
     }
 
-    // edit category data
+    // show edit category data page
     public function edit($id){
         $category = Category::find($id);
         return view('admin.category.edit')->with(['category' => $category]);

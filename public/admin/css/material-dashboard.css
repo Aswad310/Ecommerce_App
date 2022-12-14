@@ -17849,7 +17849,7 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
 }
 
 .card [class*="card-header-"] .card-title+.card-category {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgb(255, 255, 255);
 }
 
 .card [class*="card-header-"] .card-title+.card-category a {

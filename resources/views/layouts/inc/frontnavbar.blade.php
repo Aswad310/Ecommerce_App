@@ -6,7 +6,7 @@
                 @csrf
                 <div class="input-group">
                     <button class="input-group-text" type="submit"><i class="fa fa-search fa-sm"></i></button>
-                    <input type="search" class="form-control" id="search_product" name="product_name" required placeholder="search products" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="search" class="form-control" id="search_product" name="product_name" required placeholder="Search Products" aria-label="Username" aria-describedby="basic-addon1">
                 </div>
             </form>
         </div>

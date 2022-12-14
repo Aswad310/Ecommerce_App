@@ -283,9 +283,7 @@
                             Swal.fire({
                                 icon: 'success',
                                 text: response.status,
-                            }.then((value) => {
-                                swal()
-                            }));
+                            });
                             window.location = "/my-orders";
                         }
                     });

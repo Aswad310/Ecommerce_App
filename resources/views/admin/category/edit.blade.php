@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h3>Update Category
+                        <h3>Update Category - {{ $category['name'] }}
                             <a href="{{url('categories')}}" class="btn btn-secondary btn-sm float-right">Back</a>
                         </h3>
                     </div>

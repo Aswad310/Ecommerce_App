@@ -5,9 +5,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FrontendController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
-use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +21,8 @@ use App\Http\Controllers\HomeController;
     Route::get('/view-category/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewProductsByCategory']);
     Route::get('/category/{cate_slug}/{prod_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productView']);
 
-    Route::get('/product-list', [FrontendController::class, 'productListAjax']);
-    Route::post('/searchproduct', [FrontendController::class, 'searchProduct']);
+    Route::get('/product-list', [App\Http\Controllers\Frontend\FrontendController::class, 'productListAjax']);
+    Route::post('/searchproduct', [App\Http\Controllers\Frontend\FrontendController::class, 'searchProduct']);
 
 Auth::routes();
 
@@ -38,8 +38,8 @@ Auth::routes();
     Route::post('/add-to-wishlist', [WishlistController::class, 'add']);
     Route::post('/delete-wishlist-item', [WishlistController::class, 'deleteItem']);
     Route::middleware(['auth'])->group(function(){
-        Route::get('/my-orders', [UserController::class, 'index']);
-        Route::get('/view-order/{id}', [UserController::class, 'view']);
+        Route::get('/my-orders', [App\Http\Controllers\Frontend\UserController::class, 'index']);
+        Route::get('/view-order/{id}', [App\Http\Controllers\Frontend\UserController::class, 'view']);
         Route::get('/wishlist', [WishlistController::class, 'index']);
     });
 
@@ -60,6 +60,8 @@ Route::post('/place-order', [CheckoutController::class, 'placeOrder']);
  * Dashboard Routes
  */
         Route::get('/dashboard', [FrontendController::class, 'index']);
+        Route::get('/dashboard', [DashboardController::class, 'count']);
+
 /*
  * Category Routes
  */
@@ -81,8 +83,8 @@ Route::post('/place-order', [CheckoutController::class, 'placeOrder']);
 /*
 * User Routes
 */
-        Route::get('/users', [DashboardController::class, 'users']);
-        Route::get('/view-user/{id}', [DashboardController::class, 'view']);
+        Route::get('/users', [UserController::class, 'users']);
+        Route::get('/view-user/{id}', [UserController::class, 'view']);
 /*
 * Order Routes
 */

@@ -10,21 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
+    // show wishlist page
     public function index()
     {
         $wishlist = Wishlist::where('user_id', Auth::id())->latest()->get();
         return view('frontend.wishlist')->with(['wishlist' => $wishlist]);
     }
 
+    // add items to wishlist
     public function add(Request $request)
     {
         $prod_id = $request->input('product_id');
 
+        // check user authentication
         if (Auth::check())
         {
             // check if product exists
             $prod_check = Product::where('id', $prod_id)->first();
-
+            // if product already exists generates a json response
             if ($prod_check)
             {
                 if (Wishlist::where('prod_id', $prod_id)->where('user_id', Auth::id())->exists())
@@ -34,6 +37,7 @@ class WishlistController extends Controller
                         'status' => $prod_check->name .' already Wislisted'
                     ]);
                 }
+                // store data in wishlist table
                 else
                 {
                     $wishlist = new Wishlist();
@@ -47,6 +51,7 @@ class WishlistController extends Controller
                 }
             }
         }
+        // if user not login show them a json response
         else
         {
             return response()->json([
@@ -56,6 +61,7 @@ class WishlistController extends Controller
         }
     }
 
+    // remove item from wishlist table
     public function deleteItem(Request $request)
     {
         if (Auth::check())

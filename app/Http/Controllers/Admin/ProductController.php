@@ -44,7 +44,7 @@ class ProductController extends Controller
         return redirect('/products')->with('success', 'Product Added Successfully');
     }
 
-    // edit product data
+    // edit product data page
     public function edit($id)
     {
         $product = Product::find($id);

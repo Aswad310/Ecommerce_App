@@ -31,7 +31,7 @@
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{$order['tracking_no']}}</td>
-                                    <td style="color: green">Rs.{{$order['total_price']}}</td>
+                                    <td style="color: green">{{numberFormat($order['total_price'])}}</td>
                                     <td>
                                         @if($order['status'] == '0')
                                             <span style="color: coral;"><b>Pending</b></span>

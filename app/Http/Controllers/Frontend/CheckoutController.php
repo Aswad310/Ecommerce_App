@@ -45,59 +45,58 @@ class CheckoutController extends Controller
     // place order
     public function placeOrder(CheckoutRequest $request)
     {
-        try {
-            // validate upcoming request
-            $userInfoFields = $request->validated();
-            // providing random traking no.
-            $userInfoFields['tracking_no'] = $userInfoFields['fname'] . rand(1111, 9999);
-            // Auth ID
-            $userInfoFields['user_id'] = Auth::id();
-            // Total Price
-            $userInfoFields['total_price'] = $request->total_price;
-            // store data in mysql
-            $order = Order::create($userInfoFields);
+        // validate upcoming request
+        $userInfoFields = $request->validated();
+        // providing random traking no.
+        $userInfoFields['tracking_no'] = $userInfoFields['fname'] . rand(1111, 9999);
+        // Auth ID
+        $userInfoFields['user_id'] = Auth::id();
+        // Total Price
+        $userInfoFields['total_price'] = $request->total_price;
+        // store data in mysql
+        $order = Order::create($userInfoFields);
 
-            // get all cart values according to specific user
-            $cartItems = Cart::where('user_id', Auth::id())->get();
-            // loop through cartItems
-            foreach ($cartItems as $item) {
-                // create order items
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'prod_id' => $item['prod_id'],
-                    'qty' => $item['prod_qty'],
-                    'price' => $item->products->selling_price,
-                ]);
-
-                // after creating delete items from cart table for specfic user
-                Cart::destroy($cartItems);
-
-                // reduce product quantity
-                $product = Product::where('id', $item['prod_id'])->first();
-                $product['qty'] = $product['qty'] - $item['prod_qty'];
-                $product->update();
-            }
-
-            // store upcoming user basic details in User table, later user comes to checkout not have to enter details again
-            if (Auth::user()->address1 == NULL) {
-                $user = User::where('id', Auth::id())->first();
-                $user['name'] = $request->input('fname');
-                $user['lname'] = $request->input('lname');
-                $user['phone'] = $request->input('phone');
-                $user['address1'] = $request->input('address1');
-                $user['address2'] = $request->input('address2');
-                $user['city'] = $request->input('city');
-                $user['state'] = $request->input('state');
-                $user['country'] = $request->input('country');
-                $user['pincode'] = $request->input('pincode');
-                $user->update();
-            }
-
-            return response()->json([
-                'status' => 'Order placed successfully!',
+        // get all cart values according to specific user
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        // loop through cartItems
+        foreach ($cartItems as $item)
+        {
+            // create order items
+            OrderItem::create([
+                'order_id' => $order->id,
+                'prod_id' => $item['prod_id'],
+                'qty' => $item['prod_qty'],
+                'price' => $item->products->selling_price,
             ]);
-        } catch (Exception $e){
-            return $e->getMessage();
+
+            // after creating delete items from cart table for specfic user
+            Cart::destroy($cartItems);
+
+            // reduce product quantity
+            $product = Product::where('id', $item['prod_id'])->first();
+            $product['qty'] = $product['qty'] - $item['prod_qty'];
+            $product->update();
         }
+
+        // store upcoming user basic details in User table, later user comes to checkout not have to enter details again
+        if (Auth::user()->address1 == NULL)
+        {
+            $user = User::where('id', Auth::id())->first();
+            $user['name'] = $request->input('fname');
+            $user['lname'] = $request->input('lname');
+            $user['phone'] = $request->input('phone');
+            $user['address1'] = $request->input('address1');
+            $user['address2'] = $request->input('address2');
+            $user['city'] = $request->input('city');
+            $user['state'] = $request->input('state');
+            $user['country'] = $request->input('country');
+            $user['pincode'] = $request->input('pincode');
+            $user->update();
+        }
+
+        // return json response
+        return response()->json([
+            'status' => 'Order placed successfully!',
+        ]);
     }
 }
