@@ -15,7 +15,7 @@
                             @csrf
                             @method('PUT')
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="">Name <span class="required">*</span></label>
                                     <input type="text"
                                            class="form-control"
@@ -23,17 +23,6 @@
                                            placeholder="e.g. Electronics"
                                            value="{{$category['name']}}">
                                     @error('name')
-                                    <strong class="error-val">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Slug <span class="required">*</span></label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="slug"
-                                           placeholder="e.g. electronics"
-                                           value="{{$category['slug']}}">
-                                    @error('slug')
                                     <strong class="error-val">{{ $message }}</strong>
                                     @enderror
                                 </div>
@@ -50,14 +39,17 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Status</label>
+                                    <label for="active">Active</label>
                                     <input type="checkbox"
+                                           id="active"
                                            name="status"
                                            @if($category['status'] == '1') checked="checked" @endif>
+                                    <small class="text-dim">(show the category)</small>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Popular</label>
+                                    <label for="popular">Popular</label>
                                     <input type="checkbox"
+                                           id="popular"
                                            name="popular"
                                            @if($category['popular'] == '1') checked="checked" @endif>
                                 </div>

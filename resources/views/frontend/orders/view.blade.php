@@ -14,7 +14,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">View Order # {{$orders['tracking_no']}}</h3>
+                        <h3 class="text-center">
+                            Order# {{$orders['tracking_no']}} <span class="fs-6">@if($orders['status'] == 1)[Completed]@else[Pending]@endif</span>
+                        </h3>
                     </div>
                     <div class="card-body text-dim">
                         <div class="row">
@@ -57,7 +59,11 @@
                                             <td>{{$item->qty}}</td>
                                             <td>{{numberFormat($item->price)}}</td>
                                             <td>
-                                                <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" width="50px" alt="image here">
+                                                @if($item->products->image)
+                                                    <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" width="50px" alt="image here">
+                                                @else
+                                                    <img class="card-img-top" src="https://via.placeholder.com/50x25" alt="product image">
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

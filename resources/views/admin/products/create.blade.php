@@ -29,7 +29,7 @@
                                     <strong class="error-val">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="">Name <span class="required">*</span></label>
                                     <input type="text"
                                            class="form-control"
@@ -40,21 +40,10 @@
                                     <strong class="error-val">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Slug <span class="required">*</span></label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="slug"
-                                           placeholder="e.g. apple mac book pro"
-                                           value="{{old('slug')}}">
-                                    @error('slug')
-                                    <strong class="error-val">{{ $message }}</strong>
-                                    @enderror
-                                </div>
                                 <div class="col-md-12 mb-3">
                                     <label for="">Small Description <span class="required">*</span></label>
                                     <textarea name="small_description"
-                                              rows="3"
+                                              rows="2"
                                               class="form-control"
                                               placeholder="e.g. 2020 Apple MacBook Air Laptop: Apple M1 Chip, 13” Retina Display, 8GB RAM, 256GB SSD Storage"
                                     >{{old('small_description')}}</textarea>
@@ -66,7 +55,7 @@
                                     <label for="">Description <span class="required">*</span></label>
                                     <textarea name="description"
                                               id="editor"
-                                              rows="10"
+                                              rows="50"
                                               class="form-control"
                                               placeholder="e.g. 2020 Apple MacBook Air Laptop: Apple M1 Chip, 13” Retina Display, 8GB RAM, 256GB SSD Storage, Backlit Keyboard, FaceTime HD Camera, Touch ID. Works with iPhone/iPad; Gold"
                                     >{{old('description')}}</textarea>
@@ -97,14 +86,6 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Tax</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           name="tax"
-                                           placeholder="e.g. 20"
-                                           value="{{old('tax')}}">
-                                </div>
-                                <div class="col-md-6 mb-3">
                                     <label for="">Quantity <span class="required">*</span></label>
                                     <input type="number"
                                            class="form-control"
@@ -116,15 +97,18 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Status</label>
+                                    <label for="active">Active</label>
                                     <input type="checkbox"
+                                           id="active"
                                            name="status"
                                            value="1"
                                            @if(old('status') == '1') checked="checked" @endif>
+                                    <small class="text-dim">(show the product)</small>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Trending</label>
+                                    <label for="trending">Trending</label>
                                     <input type="checkbox"
+                                           id="trending"
                                            name="trending"
                                            value="1"
                                            @if(old('trending') == '1') checked="checked" @endif>

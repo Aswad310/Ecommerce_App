@@ -19,7 +19,13 @@
                         @foreach($allCategories as $category)
                             <div class="col-md-4 mb-3">
                                 <div class="card ">
-                                    <a href="{{url('view-category/'.$category['slug'])}}"><img class="card-img-top" src="{{asset('assets/uploads/category/'.$category['image'])}}" alt="product image"></a>
+                                    <a href="{{url('view-category/'.$category['slug'])}}">
+                                        @if($category['image'])
+                                            <img class="card-img-top" src="{{asset('assets/uploads/category/'.$category['image'])}}" alt="product image">
+                                        @else
+                                            <img class="card-img-top" src="https://via.placeholder.com/400x220" alt="category image">
+                                        @endif
+                                    </a>
                                     <div class="card-body">
                                         <h6 class="card-title">{{$category['name']}}</h6>
                                     </div>

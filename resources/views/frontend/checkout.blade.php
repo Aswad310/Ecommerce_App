@@ -81,11 +81,10 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mt-3">
-                                    <label for="address2">Address 2 <span class="required">*</span></label>
+                                    <label for="address2">Address 2</label>
                                     <input type="text"
                                            class="form-control address2"
                                            name="address2"
-                                           required
                                            placeholder="e.g. Near Gulberg 3"
                                            value="{{Auth::user()->address2}}">
                                     @error('address2')
@@ -216,7 +215,7 @@
             var country = $('.country').val();
             var pincode = $('.pincode').val();
 
-            if(firstname == "" || lastname == "" || email == "" || phone == "" || address1 == "" || address2 == "" || city=="" || state=="" || country=="" || pincode==""){
+            if(firstname == "" || lastname == "" || email == "" || phone == "" || address1 == "" || city=="" || state=="" || country=="" || pincode==""){
                 alert("Fields can't be Empty")
             }
             else{
@@ -284,7 +283,7 @@
                                 icon: 'success',
                                 text: response.status,
                             });
-                            window.location = "/my-orders";
+                            window.location = "/thanks";
                         }
                     });
                 });

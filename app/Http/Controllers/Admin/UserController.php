@@ -18,7 +18,7 @@ class UserController extends Controller
     // give user detail according to specific id
     public function view($id)
     {
-        $user = User::find($id);
+        $user = User::findorfail($id);
         return view('admin.users.view')->with(['user' => $user]);
     }
 }

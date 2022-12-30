@@ -29,7 +29,7 @@ class CheckoutRequest extends FormRequest
             'email' => 'required|email',
             'phone' => 'required|min:11|max:11',
             'address1' => 'required',
-            'address2' => 'required',
+            'address2' => '',
             'city' => 'required',
             'state' => 'required',
             'country' => 'required',

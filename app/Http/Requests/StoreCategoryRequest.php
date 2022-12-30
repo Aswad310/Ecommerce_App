@@ -29,7 +29,7 @@ class StoreCategoryRequest extends FormRequest
                 'required',
                 Rule::unique('categories')->ignore($this->id),
             ],
-            'slug' => 'required',
+            'slug' => '',
             'description' => 'required|min:1',
             'status' => '',
             'popular' => '',

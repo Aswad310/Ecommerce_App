@@ -14,7 +14,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4 border-right">
-                        <img src="{{asset('assets/uploads/product/'.$product['image'])}}" class="w-100" alt="image here">
+                        @if($product['image'])
+                            <img src="{{asset('assets/uploads/product/'.$product['image'])}}" class="w-100" alt="image here">
+                        @else
+                            <img class="card-img-top" src="https://via.placeholder.com/360x263" alt="category image">
+                        @endif
                     </div>
                     <div class="col-md-8">
                         <h2 class="mb-0 mt-3">
@@ -24,8 +28,7 @@
                             @endif
                         </h2>
                         <hr />
-                        <label class="me-3">Original Price: <s>{{numberFormat($product['original_price'])}}</s></label>
-                        <label class="fw-bold">Selling Price: {{numberFormat($product['selling_price'])}}</label>
+                        <label class="fw-bold">Price: {{numberFormat($product['selling_price'])}}</label>
                         <p class="mt-3">{{$product['small_description']}}</p>
                         <hr />
                         @if($product['qty'] > 0)

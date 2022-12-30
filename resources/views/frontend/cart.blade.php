@@ -17,7 +17,11 @@
                     @foreach($cartItems as $item)
                         <div class="row product_data mb-3">
                             <div class="col-md-2 my-auto">
-                                <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" height="70px" width="70px" alt="image here">
+                                @if($item->products->image)
+                                    <img src="{{asset('assets/uploads/product/'.$item->products->image)}}" height="70px" width="70px" alt="image here">
+                                @else
+                                    <img class="card-img-top" src="https://via.placeholder.com/200x100" alt="category image">
+                                @endif
                             </div>
                             <div class="col-md-3 my-auto">
                                 <h6>{{$item->products->name}}</h6>

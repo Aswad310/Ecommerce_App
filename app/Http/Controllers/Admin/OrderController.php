@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -27,8 +28,14 @@ class OrderController extends Controller
     {
         // validate the request
         $orderStatusField = $request->validate(['status' => 'required']);
+        // take customer gmail from the upcoming request
+        $customerGmail = $request->customer_gmail;
         // update the status field
         $id->update($orderStatusField);
+        // send mail to customer on order completed
+        if ($orderStatusField['status'] == 1){
+            Mail::to($customerGmail)->send(new \App\Mail\OrderCompletedMail());
+        }
         // redirect
         return redirect('/orders')->with('success', 'Order status updated successfully');
     }

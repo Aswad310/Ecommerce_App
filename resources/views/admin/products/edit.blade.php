@@ -24,7 +24,7 @@
                                     <strong class="error-val">{{ $message }}</strong>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="">Name <span class="required">*</span></label>
                                     <input type="text"
                                            class="form-control"
@@ -32,17 +32,6 @@
                                            placeholder="e.g. Apple MacBook Pro"
                                            value="{{$product['name']}}">
                                     @error('name')
-                                    <strong class="error-val">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Slug <span class="required">*</span></label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="slug"
-                                           placeholder="e.g. apple mac book pro"
-                                           value="{{$product['slug']}}">
-                                    @error('slug')
                                     <strong class="error-val">{{ $message }}</strong>
                                     @enderror
                                 </div>
@@ -92,14 +81,6 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Tax</label>
-                                    <input type="number"
-                                           class="form-control"
-                                           name="tax"
-                                           placeholder="e.g. 20"
-                                           value="{{$product['tax']}}">
-                                </div>
-                                <div class="col-md-6 mb-3">
                                     <label for="">Quantity <span class="required">*</span></label>
                                     <input type="number"
                                            class="form-control"
@@ -111,11 +92,12 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="status">Status</label>
+                                    <label for="active">Active</label>
                                     <input type="checkbox"
-                                           id="status"
+                                           id="active"
                                            name="status"
                                            @if($product['status'] == '1') checked="checked" @endif>
+                                    <small class="text-dim">(show the product)</small>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="trending">Trending</label>

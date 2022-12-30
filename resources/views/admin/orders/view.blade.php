@@ -72,6 +72,7 @@
                                             <option {{ $orders['status'] == '0' ? 'selected' : '' }} value="0">Pending</option>
                                             <option {{ $orders['status'] == '1' ? 'selected' : '' }} value="1">Completed</option>
                                         </select>
+                                        <input type="hidden" name="customer_gmail" value="{{$orders['email']}}">
                                         @error('order_status')
                                             <small class="error-val">{{ $message }}</small>
                                         @enderror

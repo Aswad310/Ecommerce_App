@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -30,6 +31,9 @@ class ProductController extends Controller
     {
         // check upcoming request
         $productFields = $request->validated();
+        // create unique slug
+        $slug = Str::slug($productFields['name']);
+        $productFields['slug'] = $slug;
         // check image
         if ($request->hasFile('image')){
             $file = $request->file('image');
@@ -47,7 +51,7 @@ class ProductController extends Controller
     // edit product data page
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::findorfail($id);
         return view('admin.products.edit')->with(['product' => $product]);
     }
 
@@ -56,6 +60,9 @@ class ProductController extends Controller
     {
         // check upcoming request
         $productFields = $request->validated();
+        // create unique slug
+        $slug = Str::slug($productFields['name']);
+        $productFields['slug'] = $slug;
         // update status
         $productFields['status'] = $request->status == true ? '1':'0';
         // update popular

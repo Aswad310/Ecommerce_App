@@ -51,6 +51,8 @@ class CheckoutController extends Controller
         $userInfoFields['tracking_no'] = $userInfoFields['fname'] . rand(1111, 9999);
         // Auth ID
         $userInfoFields['user_id'] = Auth::id();
+        // address2
+        $userInfoFields['address2'] = $userInfoFields['address2'] ?? "";
         // Total Price
         $userInfoFields['total_price'] = $request->total_price;
         // store data in mysql

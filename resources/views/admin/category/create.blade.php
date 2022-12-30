@@ -13,7 +13,7 @@
                         <form action="{{ url('insert-category') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6 mb-3">
+                                <div class="col-md-12 mb-3">
                                     <label for="">Name <span class="required">*</span></label>
                                     <input type="text"
                                            class="form-control"
@@ -21,17 +21,6 @@
                                            placeholder="e.g. Electronics"
                                            value="{{old('name')}}">
                                     @error('name')
-                                    <strong class="error-val">{{ $message }}</strong>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="">Slug <span class="required">*</span></label>
-                                    <input type="text"
-                                           class="form-control"
-                                           name="slug"
-                                           placeholder="e.g. electronics"
-                                           value="{{old('slug')}}">
-                                    @error('slug')
                                     <strong class="error-val">{{ $message }}</strong>
                                     @enderror
                                 </div>
@@ -50,15 +39,18 @@
                                 </div>
                                 <!-- description section ends -->
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Status</label>
+                                    <label for="status">Active </label>
                                     <input type="checkbox"
+                                           id="status"
                                            name="status"
                                            value="1"
                                            @if(old('status') == '1') checked="checked" @endif>
+                                    <small class="text-dim">(show the category)</small>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="">Popular</label>
+                                    <label for="popular">Popular</label>
                                     <input type="checkbox"
+                                           id="popular"
                                            name="popular"
                                            value="1"
                                            @if(old('popular') == '1') checked="checked" @endif>

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\FrontendController;
+use App\Http\Controllers\Acheckoutdmin\FrontendController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\HomeController;
 
 /**
@@ -24,7 +25,9 @@ use App\Http\Controllers\HomeController;
     Route::get('/product-list', [App\Http\Controllers\Frontend\FrontendController::class, 'productListAjax']);
     Route::post('/searchproduct', [App\Http\Controllers\Frontend\FrontendController::class, 'searchProduct']);
 
-Auth::routes();
+Auth::routes([
+    'verify' => true
+]);
 
 /**
  * CART and WISHLIST Routes
@@ -48,10 +51,11 @@ Auth::routes();
  */
 Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::post('/place-order', [CheckoutController::class, 'placeOrder']);
+Route::view('/thanks', 'frontend.thanks');
 /**
  * Extra Routes
  */
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('verified');
 /**
  * Admin Dashboard Routes
  */

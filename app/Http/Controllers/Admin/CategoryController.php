@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -24,6 +25,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request){
         // validate upcoming request
         $categoryFields = $request->validated();
+        // create unique slug
+        $slug = Str::slug($categoryFields['name']);
+        $categoryFields['slug'] = $slug;
         // check image
         if ($request->hasFile('image')){
             $file = $request->file('image');
@@ -40,7 +44,7 @@ class CategoryController extends Controller
 
     // show edit category data page
     public function edit($id){
-        $category = Category::find($id);
+        $category = Category::findorfail($id);
         return view('admin.category.edit')->with(['category' => $category]);
     }
 
@@ -48,6 +52,9 @@ class CategoryController extends Controller
     public function update(StoreCategoryRequest $request, Category $id){
         // check upcoming request
         $categoryFields = $request->validated();
+        // update unique slug
+        $slug = Str::slug($categoryFields['name']);
+        $categoryFields['slug'] = $slug;
         // update status
         $categoryFields['status'] = $request->status == true ? '1':'0';
         // update popular
