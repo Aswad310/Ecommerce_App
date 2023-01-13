@@ -44,16 +44,16 @@
                                         @endif
                                     </a>
                                     <div class="card-body product_data">
-                                        <h5 class="card-title">{{$product['name']}}</h5>
+                                        <h5 class="card-title">{{ $product['name'] }}</h5>
                                         <p>
-                                            <span style="color:green"><b>{{numberFormat($product['selling_price'])}}</b></span>
+                                            <span class="fs-4" style="color:green">{{ numberFormat($product['selling_price']) }}</span>
                                         </p>
                                         @if($product['qty'] > 0)
-                                            <input type="hidden" class="prod_id" value="{{$product['id']}}">
+                                            <input type="hidden" class="prod_id" value="{{ $product['id'] }}">
                                             <input type="hidden" class="qty-input" value="1">
-                                            <button type="button" title="Add to cart" class="btn btn-primary btn-sm addToCartBtn float-end"><i class="fa fa-cart-shopping"></i> Add to Cart</button>
+                                            <button type="button" title="Add to cart" class="btn btn-outline-primary btn-sm addToCartBtn float-end"><i class="fa fa-cart-shopping"></i> Add to Cart</button>
                                             @auth()
-                                                <a href="{{url('checkout')}}" title="Buy Now" class="btn btn-outline-success btn-sm buyNowBtn float-start"><i class="fa fa-arrow-right-from-bracket"></i> Buy Now</a>
+                                                <a href="{{ url('checkout') }}" title="Buy Now" class="btn btn-outline-default btn-sm buyNowBtn float-start"><i class="fa fa-arrow-right-from-bracket"></i> Buy Now</a>
                                             @endauth
                                         @else
                                             <label class="badge bg-danger float-start">Out of Stock</label>

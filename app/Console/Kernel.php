@@ -4,7 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -15,7 +16,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            // Get the users with a non-empty cart
+            $users = DB::table('carts')
+                ->leftJoin('users', 'users.id', '=', 'carts.user_id')
+                ->groupBy('users.id', 'carts.id')
+                ->get();
+
+            // Send an email to each user
+            foreach ($users as $user) {
+                Mail::to($user->email)->send(new \App\Mail\CartReminderEmail());
+            }
+        })->everyMinute();
     }
 
     /**

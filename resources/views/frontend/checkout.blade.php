@@ -163,18 +163,18 @@
                                         @php $total = 0 @endphp
                                         @foreach($cartItems as $cartItem)
                                             <tr>
-                                                <td>{{$cartItem->products->name}}</td>
-                                                <td>x{{$cartItem->prod_qty}}</td>
-                                                <td>{{numberFormat($cartItem->products->selling_price)}}</td>
-                                                <td style="color: green"><b>{{numberFormat($cartItem->prod_qty * $cartItem->products->selling_price)}}</b></td>
+                                                <td>{{ $cartItem->products->name }}</td>
+                                                <td>x{{ $cartItem->prod_qty }}</td>
+                                                <td>{{ numberFormat($cartItem->products->selling_price) }}</td>
+                                                <td style="color: green">{{ numberFormat($cartItem->prod_qty * $cartItem->products->selling_price) }}</td>
                                             </tr>
                                         @php $total+= $cartItem->prod_qty * $cartItem->products->selling_price @endphp
                                         @endforeach
                                     </tbody>
                                     <tfoot>
-                                        <tr>
-                                            <th class="text-dim" style="text-align:right;" colspan="3">Total Payable Bill</th>
-                                            <td><b>{{numberFormat($total ?? 0)}}</b></td>
+                                        <tr class="fs-4">
+                                            <td style="text-align:right;" colspan="3">Total Bill</td>
+                                            <td>{{ numberFormat($total ?? 0) }}</td>
                                             <input type="hidden" name="total_price" value="{{$total}}">
                                         </tr>
                                     </tfoot>

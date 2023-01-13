@@ -3,7 +3,7 @@
 
 Your order is completed and ready to go. See yaaah!
 
-<x-mail::button :url="'http://localhost:8001/'">
+<x-mail::button :url="'http://localhost:8000/'">
 Redirect to Shop
 </x-mail::button>
 
